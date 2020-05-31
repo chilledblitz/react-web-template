@@ -1,0 +1,23 @@
+export default class Parser {
+
+    static parseLoginResponse(responseData){
+        return {
+            userId : responseData.userId || "userId_348563649",
+            firstName : responseData.firstName || "Ratnesh",
+            lastName : responseData.lastName || "Chandra",
+            email : responseData.userId || "chilledblitz@gmail.com",
+            photo : responseData.userId || "photo_userId_348563649.svg",
+            address : this.parseDummyUserAddress(responseData.address),
+        }
+    }
+
+    static parseDummyUserAddress(addressObject){
+        return {
+            streetAddress : addressObject.streetAddress || "streetAddress",
+            suite : addressObject.suite || "suite",
+            city : addressObject.city || "city",
+            state : addressObject.state || "state",
+            country : addressObject.country || "country",
+        }
+    }
+}
