@@ -21,17 +21,15 @@ export const httpService = (method, headers, data, url) => {
                 if (!responseText)
                     return Promise.reject(responseText);
 
-                let data;
                 try {
-                    data = typeof responseText === 'object' ? responseText : JSON.parse(responseText);
+                    const data = typeof responseText === 'object' ? responseText : JSON.parse(responseText);
                     if (data && !data.success)
                         return Promise.reject((data && data.responseCode) === 404 ? data : (data && {message : data.message, responseCode: data.responseCode}) || response.statusText);
-
+                    return data;
                 } catch (err) {
                     console.log('Class: httpService, Function: fetch ==', err);
                     return Promise.reject(err)
                 }
-                return data;
             });
         }).catch(function (err) {
             console.log('Class: httpService, Function: fetch ==', err);
